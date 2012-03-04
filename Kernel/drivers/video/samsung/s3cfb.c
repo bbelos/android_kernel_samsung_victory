@@ -38,7 +38,7 @@
 #include <linux/suspend.h>
 #endif
 #include "s3cfb.h"
-#include "logo_rgb24_wvga_portrait.h"
+#include "logo_rgb24_wvga_portrait_miui.h"
 #ifdef CONFIG_FB_S3C_MDNIE
 #include "s3cfb_mdnie.h"
 #include <linux/delay.h>
