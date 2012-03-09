@@ -1,4 +1,21 @@
 #!/bin/bash
+#
+# This script builds the CM kernel and copies it to the Epic MTD device tree.
+# If you are building outside of a CM tree, you must specify the path to your
+# device tree.
+#
+#   export CMPATH=/path/to/your/cmrepo >> ~/.bashrc
+#
+
+#uncomment to add custom version string
+#export KBUILD_BUILD_VERSION=""
+DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
+
+# Shouldn't need to modify anything below here
+. include/functions
+find_toolchain
+
+# Display Environment
 
 echo "$1 $2 $3"
 
@@ -42,13 +59,18 @@ case "$1" in
 esac
 
 if [ "$CPU_JOB_NUM" = "" ] ; then
+    # Detect number of threads
+    if [ -f /proc/cpuinfo ]; then
+        CPU_JOB_NUM=$(cat /proc/cpuinfo  |grep ^processor |wc -l)
+    else
 	CPU_JOB_NUM=4
+    fi
 fi
 
 TARGET_LOCALE="vzw"
 
 #uncomment to add custom version string
-CUSTOMVERSION="Shadow-CM9_v0.1"
+CUSTOMVERSION="Shadow-CM9_v0.6.0"
 export KBUILD_BUILD_VERSION=$CUSTOMVERSION
 LOCALVERSION_STRING="-$CUSTOMVERSION"
 

@@ -370,7 +370,7 @@ static int wm8994_set_path(struct snd_kcontrol *kcontrol,
 		DEBUG_LOG_ERR("Unknown Path\n");
 		return -ENODEV;
 	}
-	if (path_num == 4 && _dockredir) 
+	if (path_num == 4 && _dockredir)
 		path_num = 11;
 
 	switch (path_num) {
